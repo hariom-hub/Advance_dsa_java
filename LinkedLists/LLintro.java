@@ -42,7 +42,29 @@ public class LLintro {
         Tail = newNode;
     }
 
+    public void Print() {
+
+        if (Head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node temp = Head;
+        while (temp != null) {
+            System.out.println(temp.data+"->");
+            temp = temp.next;
+        }
+        System.out.println();
+
+    }
+
     public static void main(String[] args) {
+
+        LinkedList<Integer>ll = new LinkedList<>();
+        ll.addFirst(1);
+        ll.addFirst(2);
+        ll.addLast(3);
+        ll.addLast(4);
 
     }
 }
