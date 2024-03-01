@@ -137,6 +137,7 @@ public class LLintro {
         if (head == null) {
             return -1;
         }
+
         if (head.data == key) {
             return 0;
         }
@@ -146,9 +147,7 @@ public class LLintro {
         if (idx == -1) {
             return -1;
         }
-
-        return idx + 1; // adding 1 because the next node returned the idx is not correct therefore we
-                        // add 1
+        return idx + 1;
     }
 
     public int ReucursiveSearch(int key) {
