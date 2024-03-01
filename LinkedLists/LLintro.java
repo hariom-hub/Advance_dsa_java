@@ -114,23 +114,43 @@ public class LLintro {
 
     }
 
+    public int IterativeSearch(int key) {
+
+        Node temp = head;
+        int i = 0;
+
+        while (temp != null) {
+
+            if (temp.data == key) {
+                return i;
+            }
+            temp = temp.next;
+            i++;
+        }
+
+        // if key not found
+        return -1;
+    }
+
     public static void main(String[] args) {
         LLintro linkedList = new LLintro();
         linkedList.addFirst(1);
         linkedList.addLast(2);
         linkedList.addLast(3);
         linkedList.addLast(4);
-        linkedList.addLast(5);
+        linkedList.addLast(10);
 
         linkedList.print();
-        System.out.println(size);
+        System.out.println(linkedList.IterativeSearch(10));
+        // System.out.println(size);
 
-        linkedList.removeFirst();
-        linkedList.print();
+        // linkedList.removeFirst();
+        // linkedList.print();
 
-        linkedList.removeLast();
-        linkedList.removeLast();
-        linkedList.removeLast();
-        linkedList.print();
+        // linkedList.removeLast();
+        // linkedList.removeLast();
+        // linkedList.removeLast();
+        // linkedList.print();
+
     }
 }
