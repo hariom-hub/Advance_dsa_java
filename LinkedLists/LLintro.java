@@ -127,5 +127,10 @@ public class LLintro {
 
         linkedList.removeFirst();
         linkedList.print();
+
+        linkedList.removeLast();
+        linkedList.removeLast();
+        linkedList.removeLast();
+        linkedList.print();
     }
 }
