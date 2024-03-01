@@ -133,20 +133,26 @@ public class LLintro {
     }
 
     public int helper(Node head, int key) {
+
         if (head == null) {
             return -1;
         }
-        if(head.data == key){
+        if (head.data == key) {
             return 0;
         }
 
-        int idx = helper(head, key);
-        
-        if(idx == -1){
+        int idx = helper(head.next, key);
+
+        if (idx == -1) {
             return -1;
         }
 
-        return idx+1; //adding 1 because the next node returned the idx is not correct therefore we add 1
+        return idx + 1; // adding 1 because the next node returned the idx is not correct therefore we
+                        // add 1
+    }
+
+    public int ReucursiveSearch(int key) {
+        return helper(head, key);
     }
 
     public static void main(String[] args) {
@@ -155,10 +161,11 @@ public class LLintro {
         linkedList.addLast(2);
         linkedList.addLast(3);
         linkedList.addLast(4);
-        linkedList.addLast(10);
 
         linkedList.print();
-        System.out.println(linkedList.IterativeSearch(10));
+        // System.out.println(linkedList.IterativeSearch(10));
+        System.out.println(linkedList.ReucursiveSearch(3));
+        System.out.println(linkedList.ReucursiveSearch(10));
         // System.out.println(size);
 
         // linkedList.removeFirst();
