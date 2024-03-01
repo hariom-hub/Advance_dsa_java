@@ -132,6 +132,23 @@ public class LLintro {
         return -1;
     }
 
+    public int helper(Node head, int key) {
+        if (head == null) {
+            return -1;
+        }
+        if(head.data == key){
+            return 0;
+        }
+
+        int idx = helper(head, key);
+        
+        if(idx == -1){
+            return -1;
+        }
+
+        return idx+1; //adding 1 because the next node returned the idx is not correct therefore we add 1
+    }
+
     public static void main(String[] args) {
         LLintro linkedList = new LLintro();
         linkedList.addFirst(1);
