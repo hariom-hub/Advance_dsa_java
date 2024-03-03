@@ -154,17 +154,73 @@ public class LLintro {
         return helper(head, key);
     }
 
+    public void Reverse() {
+
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
+    public void deleteNthnodefromEnd(int n) {
+
+        // calculate size of node
+
+        int size_ = 0;
+        Node temp = head;
+
+        // while (temp != null) {
+            
+        //     if(n != temp.data){
+        //         System.out.println("Element not present");
+        //         return;
+        //     }
+        // }
+
+        while (temp != null) {
+            temp = temp.next;
+            size_++;
+        }
+
+        if (n == size_) {
+            head = head.next;  //remove first
+            return;
+        }
+
+        // sz-n
+        int i = 1;
+        int itoFind = size_ - n;
+        Node prev = head;
+        while(i<itoFind){
+            prev = prev.next;
+            i++;
+        }
+
+        prev.next = prev.next.next;
+        return;
+
+    }
+
     public static void main(String[] args) {
         LLintro linkedList = new LLintro();
+        int n = 3;
         linkedList.addFirst(1);
         linkedList.addLast(2);
         linkedList.addLast(3);
         linkedList.addLast(4);
+        linkedList.addLast(5);
 
         linkedList.print();
         // System.out.println(linkedList.IterativeSearch(10));
-        System.out.println(linkedList.ReucursiveSearch(3));
-        System.out.println(linkedList.ReucursiveSearch(10));
+        // System.out.println(linkedList.ReucursiveSearch(3));
+        // System.out.println(linkedList.ReucursiveSearch(10));
         // System.out.println(size);
 
         // linkedList.removeFirst();
@@ -175,5 +231,10 @@ public class LLintro {
         // linkedList.removeLast();
         // linkedList.print();
 
+        // linkedList.Reverse();
+        // linkedList.print();
+        System.out.println("Deleted element "+n);
+        linkedList.deleteNthnodefromEnd(n);
+        linkedList.print();
     }
 }
