@@ -1,6 +1,6 @@
+import java.util.*;
 
-
-public class LLintro {
+public class checkCycle {
 
     public static class Node {
         int data;
@@ -12,7 +12,7 @@ public class LLintro {
         }
     }
 
-    public Node head;
+    public static Node head;
     public Node tail;
     public static int size;
 
@@ -177,11 +177,11 @@ public class LLintro {
         Node temp = head;
 
         // while (temp != null) {
-            
-        //     if(n != temp.data){
-        //         System.out.println("Element not present");
-        //         return;
-        //     }
+
+        // if(n != temp.data){
+        // System.out.println("Element not present");
+        // return;
+        // }
         // }
 
         while (temp != null) {
@@ -190,7 +190,7 @@ public class LLintro {
         }
 
         if (n == size_) {
-            head = head.next;  //remove first
+            head = head.next; // remove first
             return;
         }
 
@@ -198,7 +198,7 @@ public class LLintro {
         int i = 1;
         int itoFind = size_ - n;
         Node prev = head;
-        while(i<itoFind){
+        while (i < itoFind) {
             prev = prev.next;
             i++;
         }
@@ -208,14 +208,84 @@ public class LLintro {
 
     }
 
+    public static boolean isCycle() {
+
+        Node slow = head; // +1
+        Node fast = head; // +2
+
+        while (fast != null && fast.next != null) {
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+
+                return true; // cycle exist
+            }
+        }
+        return false; // cycle doesn't exist
+    }
+
+    public static void removeCycle() {
+
+        // detect cycle
+
+        Node slow = head;
+        Node fast = head;
+
+        boolean cycle = false;
+
+        while (fast != null && fast.next != null) {
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (fast == slow) {
+
+                cycle = true;
+            }
+        }
+
+        if (cycle == false) {
+            return;
+        }
+        // find meeting point
+
+        slow = head;
+        Node prev = null;
+
+        while (slow != fast) {
+
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // remove cycle
+
+        prev.next = null;
+
+    }
+
     public static void main(String[] args) {
         LLintro linkedList = new LLintro();
 
-        linkedList.addFirst(1);
-        linkedList.addLast(2);
-        linkedList.addLast(3);
-        linkedList.addLast(4);
-        linkedList.print();
+        // linkedList.addFirst(1);
+        // linkedList.addLast(2);
+        // linkedList.addLast(3);
+        // linkedList.addLast(4);
+        // linkedList.print();
+        head = new Node(1);
+        Node temp = new Node(2);
+        head.next = temp;
+        head.next.next = new Node(3);
+        head.next.next.next = head;
+        // linkedList.print();
+
+        System.out.println(isCycle());
+        removeCycle();
+        System.out.println(isCycle());
+
         // System.out.println(linkedList.IterativeSearch(10));
         // System.out.println(linkedList.ReucursiveSearch(3));
         // System.out.println(linkedList.ReucursiveSearch(10));
