@@ -253,7 +253,6 @@ public class checkpalindromeLL {
             if (right.data != left.data) {
                 return false;
             }
-
             left = left.next;
         }
         return true;    

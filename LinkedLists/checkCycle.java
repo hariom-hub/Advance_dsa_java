@@ -267,6 +267,15 @@ public class checkCycle {
 
     }
 
+    public void Zigzag(){
+
+
+        //find mid
+
+        //reverse right or 2nd part
+
+        //alternate merging
+    }
     public static void main(String[] args) {
         LLintro linkedList = new LLintro();
 
