@@ -323,9 +323,8 @@ public class checkCycle {
         linkedList.addLast(4);
         linkedList.addLast(5);
         linkedList.print();
-        checkCycle obj = new checkCycle();
-        obj.Zigzag();
-        linkedList.print();
+        checkCycle obj;
+
 
         // linkedList.addFirst(1);
         // linkedList.addLast(2);
