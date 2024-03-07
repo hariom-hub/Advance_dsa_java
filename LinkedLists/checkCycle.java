@@ -267,33 +267,81 @@ public class checkCycle {
 
     }
 
-    public void Zigzag(){
+    public static void Zigzag() {
 
+        // find mid
 
-        //find mid
+        Node slow = head;
+        Node fast = head.next;
 
-        //reverse right or 2nd part
+        while (fast != null && fast.next != null) {
 
-        //alternate merging
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        Node mid = slow;
+        // reverse right or 2nd part
+
+        Node curr = mid.next;
+        mid.next = null;
+        Node prev = null;
+        Node next;
+
+        while (curr != null) {
+
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node left = head;
+        Node right = prev;
+        Node nextL, nextR;
+
+        while (left != null && right != null) {
+
+            nextL = left.next;
+            left.next = right;
+            nextR = right.next;
+            right.next = nextL;
+
+            left = nextL;
+            right = nextR;
+        }
+
+        // alternate merging
     }
+
     public static void main(String[] args) {
         LLintro linkedList = new LLintro();
+
+        linkedList.addLast(1);
+        linkedList.addLast(2);
+        linkedList.addLast(3);
+        linkedList.addLast(4);
+        linkedList.addLast(5);
+        linkedList.print();
+        checkCycle obj = new checkCycle();
+        obj.Zigzag();
+        linkedList.print();
 
         // linkedList.addFirst(1);
         // linkedList.addLast(2);
         // linkedList.addLast(3);
         // linkedList.addLast(4);
         // linkedList.print();
-        head = new Node(1);
-        Node temp = new Node(2);
-        head.next = temp;
-        head.next.next = new Node(3);
-        head.next.next.next = head;
+        // head = new Node(1);
+        // Node temp = new Node(2);
+        // head.next = temp;
+        // head.next.next = new Node(3);
+        // head.next.next.next = head;
         // linkedList.print();
 
-        System.out.println(isCycle());
-        removeCycle();
-        System.out.println(isCycle());
+        // System.out.println(isCycle());
+        // removeCycle();
+        // System.out.println(isCycle());
 
         // System.out.println(linkedList.IterativeSearch(10));
         // System.out.println(linkedList.ReucursiveSearch(3));
