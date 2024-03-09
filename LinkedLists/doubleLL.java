@@ -1,3 +1,4 @@
+
 public class doubleLL {
 
     public class Node {
@@ -17,13 +18,13 @@ public class doubleLL {
     public static Node prev;
     public static Node next;
     public static Node tail;
-    public static int size;
+    public static int size_;
 
     // add
     public void AddFirst(int data) {
 
         Node newNode = new Node(data);
-        size++;
+        size_++;
         if (head == null) {
             head = tail = null;
             return;
@@ -34,19 +35,48 @@ public class doubleLL {
     }
     // print
 
-    public  void printNode() {
+    public void printNode() {
 
         Node temp = head;
 
         while (temp != null) {
-            System.out.print(temp.data + "<->");
+            System.out.println(temp.data + "<->");
             temp = temp.next;
         }
         System.out.println("null");
     }
 
-    public static void main(String[] args) {
+    public int removeFirst() {
 
+        if (head == null) {
+            System.out.println("doubly ll is empty");
+            return Integer.MIN_VALUE;
+        }
+
+        if(size_ == 1){
+            int val = head.data;
+            head = tail = null;
+            size_--;
+            return val;
+        }
+        int val = head.data;
+        head = head.next;
+        head.prev = null;
+        size_--;
+        return val;
+    }
+
+    public void removeLast(){
+
+        if(head == null || head.next == null){
+            
+            return;
+        }
+
+        
+    }
+
+    public static void main(String[] args) {
         doubleLL dll = new doubleLL();
         dll.AddFirst(5);
         dll.AddFirst(4);
@@ -54,8 +84,9 @@ public class doubleLL {
         dll.AddFirst(2);
         dll.AddFirst(1);
         dll.printNode();
-
+        dll.size_();
+        dll.removeFirst();
+        System.out.println(dll.size_);
 
     }
-
 }
