@@ -28,7 +28,7 @@ public class HistogramAreaMax {
         // next smaller left
         for (int i = 0; i < arr.length; i++) {
 
-            while (stk.isEmpty() && arr[stk.peek()] <= arr[i]) {
+            while (!stk.isEmpty() && arr[stk.peek()] <= arr[i]) {
                 stk.pop();
             }
             if (stk.isEmpty()) {

@@ -258,6 +258,16 @@ public class checkpalindromeLL {
         return true;    
     }
 
+    public  void pushAtbottom(){
+
+        if(head == null || head.next == null){
+
+            System.out.println("ll is empty");
+            return;
+        }
+
+        int top = 
+    }
     public static void main(String[] args) {
         LLintro linkedList = new LLintro();
         // int n = 3;
