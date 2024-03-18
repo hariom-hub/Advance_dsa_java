@@ -2,6 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "stackbyqu",
+      "request": "launch",
+      "mainClass": "stackbyqu",
+      "projectName": "dsa_java_20481a08"
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
