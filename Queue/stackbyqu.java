@@ -51,7 +51,7 @@ public class stackbyqu {
             return top;
         }
 
-        public static int peek(){
+        public static int peek() {
 
             if (isEmpty()) {
                 System.out.println("empty stack");
@@ -65,7 +65,7 @@ public class stackbyqu {
                 while (!qu1.isEmpty()) {
                     top = qu1.remove();
                     // if (qu1.isEmpty()) {
-                    //     break;
+                    // break;
                     // }
                     qu2.add(top);
                 }
@@ -73,7 +73,7 @@ public class stackbyqu {
                 while (!qu2.isEmpty()) {
                     top = qu2.remove();
                     // if (qu2.isEmpty()) {
-                    //     break;
+                    // break;
                     // }
                     qu1.add(top);
                 }
@@ -88,5 +88,10 @@ public class stackbyqu {
         stk.push(1);
         stk.push(2);
         stk.push(3);
+
+        while (!stk.isEmpty()) {
+            System.out.println(stk.peek());
+            stk.pop();
+        }
     }
 }
