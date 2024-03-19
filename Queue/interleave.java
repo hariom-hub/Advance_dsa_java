@@ -13,7 +13,7 @@ public class interleave {
             firstHalf.add(qu.remove());
         }
 
-        while (!qu.isEmpty()) {
+        while (!firstHalf.isEmpty()) {
 
             qu.add(firstHalf.remove());
             qu.add(qu.remove());
@@ -34,6 +34,8 @@ public class interleave {
         qu.add(8);
         qu.add(9);
         qu.add(10);
+
+        interLeave(qu);
 
         while (!qu.isEmpty()) {
 
