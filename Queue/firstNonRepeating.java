@@ -2,9 +2,9 @@ import java.util.*;
 
 public class firstNonRepeating {
 
-    public static void printNonRepeating(String str) {
+    public static void FirstNonrepeating(String str) {
 
-        int[] freq = new int[26];
+        int freq[] = new int[26];
 
         Queue<Character> qu = new LinkedList<>();
 
@@ -13,6 +13,7 @@ public class firstNonRepeating {
             char ch = str.charAt(i);
 
             qu.add(ch);
+
             freq[ch - 'a']++;
 
             while (!qu.isEmpty() && freq[qu.peek() - 'a'] > 1) {
@@ -21,19 +22,19 @@ public class firstNonRepeating {
             }
 
             if (qu.isEmpty()) {
-
                 System.out.print("-1" + " ");
             } else {
                 System.out.print(qu.peek() + " ");
             }
         }
-        
+        System.out.println();
+
     }
 
     public static void main(String[] args) {
 
-        String str = "aabccxbyzkq";
+        String str = "aabccxb";
+        FirstNonrepeating(str);
 
-        printNonRepeating(str);
     }
 }
