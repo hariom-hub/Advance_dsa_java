@@ -21,6 +21,7 @@ public class reverseQu {
     public static void main(String[] args) {
 
         Queue<Integer> qu = new LinkedList<>();
+        Vector<Integer>v = new Vector<>();
         qu.add(1);
         qu.add(2);
         qu.add(3);
