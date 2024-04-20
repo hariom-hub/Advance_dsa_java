@@ -5,7 +5,7 @@ public class stackByDq {
 
     static class Stack{
 
-        Deque<
+        
 
         
 

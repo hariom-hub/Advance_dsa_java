@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "binaryTree",
+      "request": "launch",
+      "mainClass": "binaryTree",
+      "projectName": "dsa_java_20481a08"
+    },
+    {
+      "type": "java",
       "name": "stackbyqu",
       "request": "launch",
       "mainClass": "stackbyqu",
@@ -15,8 +22,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/dsa_java/LinkedLists",
-      "program": "d:/dsa_java/LinkedLists/build/Debug/outDebug",
+      "cwd": "d:/dsa_java",
+      "program": "d:/dsa_java/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
