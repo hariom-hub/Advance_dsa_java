@@ -1,6 +1,6 @@
 package Advance_dsa_java.BinaryTrees;
 
-import  java.util.*;
+import java.util.*;
 
 import java.util.*;
 
@@ -81,39 +81,32 @@ public class findOrder {
 
         public static void levelOrder(Node root) {
 
-            if (root == null) {
+            Queue<Node> qu = new LinkedList<>();
+            qu.add(root);
+            qu.add(null);
 
-                return;
-            }
-            Queue<Node> q = new LinkedList<>();
-            q.add(root);
-            q.add(null);
+            while (!qu.isEmpty()) {
 
-            while (!q.isEmpty()) {
-
-                Node currNode = q.remove();
+                Node currNode = qu.remove();
 
                 if (currNode == null) {
-
                     System.out.println();
-                    if (q.isEmpty()) {
+                    if (qu.isEmpty()) {
                         break;
                     } else {
-                        q.add(null);
+                        qu.add(null);
                     }
                 } else {
-
                     System.out.print(currNode.data + " ");
 
                     if (currNode.left != null) {
-                        q.add(currNode.left);
+                        qu.add(currNode.left);
                     }
                     if (currNode.right != null) {
-                        q.add(currNode.right);
+                        qu.add(currNode.right);
                     }
                 }
             }
-
         }
         //     public static int treeHeight(Node root){
 
@@ -128,16 +121,17 @@ public class findOrder {
         //     }
         // }
 
-        public static void main(String[] args) {
 
-            // int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6 };
-            // BinaryTree tree = new BinaryTree();
-            // Node root = tree.buildTree(nodes);
-            // System.out.println(root.data);
+    }
 
-            // tree.Preorder(root);
-            // tree.levelOrder(root);
-        }
+    public static void main(String[] args) {
 
+        int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6};
+        BinaryTree tree = new BinaryTree();
+        Node root = tree.buildTree(nodes);
+//        System.out.println(root.data);
+
+        // tree.Preorder(root);
+        tree.levelOrder(root);
     }
 }
