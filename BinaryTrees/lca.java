@@ -42,6 +42,8 @@ public class lca {
 
     public static Node getLca(Node root, int n1, int n2) {
 
+
+        //approach1
         ArrayList<Node> path1 = new ArrayList<>();
         ArrayList<Node> path2 = new ArrayList<>();
 
@@ -63,6 +65,7 @@ public class lca {
     }
     public static Node findLca2(Node root,int n1,int n2){
 
+        //Approcach 2
         if(root==null||root.data==n1||root.data==n2){
             return root;
         }
