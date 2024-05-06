@@ -94,7 +94,7 @@ public class lca {
         root.right.right = new Node(7);
 
         int n1 = 4;
-        int n2 = 5;
+        int n2 = 6;
         System.out.println("lowest common ancestor is : "+findLca2(root,n1,n2).data);
 
 

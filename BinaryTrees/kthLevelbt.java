@@ -42,7 +42,7 @@ public class kthLevelbt {
         root.right.right = new Node(7);
         root.right.left = new Node(6);
         int level = 1;
-        int k = 2   ;
+        int k = 3   ;
         kthLevel(root, level, k);
     }
 }
