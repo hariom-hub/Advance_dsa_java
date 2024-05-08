@@ -63,6 +63,49 @@ public class bst {
         }
     }
 
+    public static Node delete(Node root, int val) {
+
+
+
+        if (root.data < val) {
+            root.right = delete(root.right, val);
+        } else if (root.data > val) {
+            root.left = delete(root.left, val);
+        } else {
+            // case - 1 delete leaf nodes
+
+            if (root.left == null && root.right == null) {
+
+                return null;
+            }
+
+            // case - 2 delete single children
+
+            if (root.left == null) {
+                return root.right;
+            }
+
+            if (root.right == null) {
+                return root.left;
+            }
+
+            //case 3 both children
+
+            Node inorderSucc = findInorderSucc(root.right);
+            root.data = inorderSucc.data;
+            root.right = delete(root.right, inorderSucc.data);
+        }
+        return root;
+    }
+
+    public static Node findInorderSucc(Node root) {
+
+        while (root.left != null) {
+            root = root.left;
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
 
         int[] val = {7, 2, 5, 4, 9, 3, 1, 8, 10,};
@@ -73,10 +116,12 @@ public class bst {
 
         Inorder(root);
         System.out.println();
-        if(search(root,50)){
-            System.out.println(" Key found");
-        }else{
-            System.out.println(" key Not found");
-        }
+//        if (search(root, 50)) {
+//            System.out.println(" Key found");
+//        } else {
+//            System.out.println(" key Not found");
+//        }
+        delete(root,5);
+        Inorder(root);
     }
 }
