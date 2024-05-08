@@ -43,9 +43,29 @@ public class bst {
         Inorder(root.right);
     }
 
+    //search for a node
+
+    public static boolean search(Node root, int key) {
+
+        if (root == null) {
+            return false;
+        }
+
+        if (root.data == key) {
+            return true;
+        }
+
+        if (root.data > key) {
+
+            return search(root.left, key);
+        } else {
+            return search(root.right, key);
+        }
+    }
+
     public static void main(String[] args) {
 
-        int[] val = {5, 1, 3, 4, 2, 7};
+        int[] val = {7, 2, 5, 4, 9, 3, 1, 8, 10,};
         Node root = null;
         for (int i = 0; i < val.length; i++) {
             root = Insert(root, val[i]);
@@ -53,5 +73,10 @@ public class bst {
 
         Inorder(root);
         System.out.println();
+        if(search(root,50)){
+            System.out.println(" Key found");
+        }else{
+            System.out.println(" key Not found");
+        }
     }
 }
