@@ -33,7 +33,7 @@ public class SortedArrtoBst {
         int mid = start + (end - start) / 2;
 
         Node root = new Node(arr[mid]);
-        root.left = createBst(arr, 0, mid - 1);
+        root.left = createBst(arr, start, mid - 1);
         root.right = createBst(arr, mid + 1, end);
         return root;
 

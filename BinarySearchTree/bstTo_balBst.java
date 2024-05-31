@@ -12,7 +12,6 @@ public class bstTo_balBst {
         Node right;
 
         Node(int data) {
-
             this.data = data;
             this.left = this.right = null;
         }
@@ -29,56 +28,37 @@ public class bstTo_balBst {
         getInorder(root.right, inorder);
     }
 
-    public static Node balanceBst(Node root){
+    public static Node balanceBst(Node root) {
 
-        ArrayList<Integer>inorder = new ArrayList<>();
-        getInorder(root,inorder);
-
-        //sorted inorder -> balanced bst
-
-        root = createBst(inorder,0,inorder.size()-1);
+        ArrayList<Integer> inorder = new ArrayList<>();
+        getInorder(root, inorder);
+        root = createBst(inorder, 0, inorder.size() - 1);
         return root;
     }
 
     public static Node createBst(ArrayList<Integer> inorder, int start, int end) {
 
-
         if (start > end) {
             return null;
         }
-        int mid = (start + end) / 2;
-
+        int mid = start + (end - start) / 2;
         Node root = new Node(inorder.get(mid));
         root.left = createBst(inorder, start, mid - 1);
         root.right = createBst(inorder, mid + 1, end);
-
         return root;
     }
 
-    public static void preorder(Node root){
+    public static void preorder(Node root) {
 
-        if(root == null){
-
+        if (root == null) {
             return;
         }
         System.out.print(root.data+" ");
         preorder(root.left);
         preorder(root.right);
-
     }
+
     public static void main(String[] args) {
-
-        /*
-
-        origin tree (unbalanced bst)
-              8
-             / \
-            6   10
-           /     \
-          5       11
-         /          \
-        3            12
-         */
 
         Node root = new Node(8);
         root.left = new Node(6);
