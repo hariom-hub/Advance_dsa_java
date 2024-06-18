@@ -23,7 +23,6 @@ public class validBst {
             return false;
         }
         if (max != null && root.data >= max.data) {
-
             return false;
         }
 
