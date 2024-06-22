@@ -27,10 +27,10 @@ public class hashmapImplement {
 
         public HashMap() {
 
-            this.N = 4;
-            this.buckets = new LinkedList[4];
+            this.N = 5;
+            this.buckets = new LinkedList[5];
 
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 5; i++) {
 
                 this.buckets[i] = new LinkedList<>();
 
@@ -80,8 +80,10 @@ public class hashmapImplement {
 
         }
 
+        @SuppressWarnings("unchecked")
         private void rehash() {
             LinkedList<Node> oldbucket[] = buckets;
+
             buckets = new LinkedList[N * 2];
             N = 2 * N;
             for (int i = 0; i < buckets.length; i++) {
@@ -170,8 +172,11 @@ public class hashmapImplement {
 
         ArrayList<String> keys = hm.keySet();
         for (String str : keys) {
-            System.out.println(str);
+            System.out.println("keys = "+str+" values = "+hm.get(str));
         }
+
+
+
 
     }
 }
