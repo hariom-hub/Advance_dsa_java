@@ -120,7 +120,7 @@ public class hashmapImplement {
             int bi = hashFunction(key);
             int di = getKeyLL(key, bi);
 
-            if (di != 1) {
+            if (di != -1) {
                 return true;
             } else {
                 return false;
@@ -132,7 +132,7 @@ public class hashmapImplement {
             int bi = hashFunction(key);
             int di = getKeyLL(key, bi);
 
-            if (di != 1) {
+            if (di != -1) {
                 Node node = buckets[bi].get(di);
                 return node.value;
             } else {
@@ -174,7 +174,7 @@ public class hashmapImplement {
         for (String str : keys) {
             System.out.println("keys = "+str+" values = "+hm.get(str));
         }
-
+        System.out.println(hm.containsKey("Japan"));
 
 
 
