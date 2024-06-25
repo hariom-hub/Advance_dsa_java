@@ -50,8 +50,33 @@ public class wordbreakprblm {
         curr.eow = true;
     }
 
+
+    public static boolean wordbreak(String key){
+
+
+        //base case
+        if (key.length() == 0){
+            return true;
+        }
+        for(int i=1;i<=key.length();i++){
+
+            if(SearchWord(key.substring(0,i))&& wordbreak(key.substring(i))){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args){
 
+
+        String arr[] = {"i","like","sam","samsung","mobile","ice"};
+
+        for (int i=0;i<arr.length;i++){
+            insert(arr[i]);
+        }
+        String key = "ilikesamsung";
+        System.out.println(wordbreak(key));
 
     }
 }
