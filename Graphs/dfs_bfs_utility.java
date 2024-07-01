@@ -68,7 +68,7 @@ public class dfs_bfs_utility {
             Dfsutility(graph, i, visit);
         }
     }
-i
+
     public static void bfs(ArrayList<Edge> graph[]) {
 
         boolean[] visit = new boolean[graph.length];
