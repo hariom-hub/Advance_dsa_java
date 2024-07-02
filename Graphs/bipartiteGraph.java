@@ -23,9 +23,9 @@ public class bipartiteGraph {
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
+
         graph[0].add(new Edge(0, 1));
         graph[0].add(new Edge(0, 2));
-
 
         graph[1].add(new Edge(1, 0));
         graph[1].add(new Edge(1, 3));
@@ -35,14 +35,28 @@ public class bipartiteGraph {
 
         graph[3].add(new Edge(3, 1));
         graph[3].add(new Edge(3, 2));
+        graph[3].add(new Edge(3,4));
 
+        graph[4].add(new Edge(4,3));
+        graph[4].add(new Edge(4,2));
 
+    }
 
+    public static int graphsize(ArrayList<Edge>[] graph) {
+
+        int nodeCount = 0;
+
+        for (int i = 0; i < graph.length; i++) {
+
+            nodeCount++;
+        }
+        return nodeCount;
     }
 
     public static boolean isBipartite(ArrayList<Edge>[] graph) {
 
         int[] color = new int[graph.length];
+
 
         for (int i = 0; i < color.length; i++) {
 
@@ -66,7 +80,7 @@ public class bipartiteGraph {
 
                         Edge e = graph[curr].get(j);
 
-                        if (color[e.dest] == color[curr]) {
+                        if (color[e.dest] == color[curr] && graphsize(graph) % 2 != 0) {
                             return false;
                         } else if (color[e.dest] == -1) {
 
@@ -84,12 +98,11 @@ public class bipartiteGraph {
 
     public static void main(String[] args) {
 
-        int V = 4;
+        int V = 5;
 
-        @SuppressWarnings("unchecked") ArrayList<Edge>[] graph = new ArrayList[V];
-
+        @SuppressWarnings("unchecked")
+        ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
         System.out.println(isBipartite(graph));
-
     }
 }
