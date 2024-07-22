@@ -1,5 +1,6 @@
 package Advance_dsa_java.Graphs;
 
+import java.awt.desktop.QuitEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -18,7 +19,8 @@ public class bipartiteGraph {
         }
     }
 
-    public static void createGraph(ArrayList<Edge> graph[]) {
+
+    public static void createGraph(ArrayList<Edge>[] graph) {
 
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
@@ -31,47 +33,44 @@ public class bipartiteGraph {
         graph[1].add(new Edge(1, 3));
 
         graph[2].add(new Edge(2, 0));
-        graph[2].add(new Edge(2, 3));
+        graph[2].add(new Edge(2, 4));
 
         graph[3].add(new Edge(3, 1));
-        graph[3].add(new Edge(3, 2));
-        graph[3].add(new Edge(3,4));
+        graph[3].add(new Edge(3, 4));
 
-        graph[4].add(new Edge(4,3));
-        graph[4].add(new Edge(4,2));
+        graph[4].add(new Edge(4, 2));
+        graph[4].add(new Edge(4, 3));
 
     }
 
-    public static int graphsize(ArrayList<Edge>[] graph) {
+//    public static int graphsize(ArrayList<Edge>[] graph) {
+//
+//        int nodeCount = 0;
+//
+//        for (int i = 0; i < graph.length; i++) {
+//
+//            nodeCount++;
+//        }
+//        return nodeCount;
+//    }
 
-        int nodeCount = 0;
-
-        for (int i = 0; i < graph.length; i++) {
-
-            nodeCount++;
-        }
-        return nodeCount;
-    }
 
     public static boolean isBipartite(ArrayList<Edge>[] graph) {
 
-        int[] color = new int[graph.length];
-
+        int color[] = new int[graph.length];
+        Queue<Integer> qu = new LinkedList<>();
 
         for (int i = 0; i < color.length; i++) {
 
             color[i] = -1;
         }
 
-        Queue<Integer> qu = new LinkedList<>();
-
-
         for (int i = 0; i < graph.length; i++) {
 
             if (color[i] == -1) {
-
                 qu.add(i);
                 color[i] = 0;
+
                 while (!qu.isEmpty()) {
 
                     int curr = qu.remove();
@@ -80,7 +79,7 @@ public class bipartiteGraph {
 
                         Edge e = graph[curr].get(j);
 
-                        if (color[e.dest] == color[curr] && graphsize(graph) % 2 != 0) {
+                        if (color[curr] == color[e.dest]) {
                             return false;
                         } else if (color[e.dest] == -1) {
 
@@ -88,7 +87,6 @@ public class bipartiteGraph {
                             color[e.dest] = nextColor;
                             qu.add(e.dest);
                         }
-
                     }
                 }
             }
@@ -99,10 +97,10 @@ public class bipartiteGraph {
     public static void main(String[] args) {
 
         int V = 5;
-
         @SuppressWarnings("unchecked")
         ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
         System.out.println(isBipartite(graph));
+
     }
 }

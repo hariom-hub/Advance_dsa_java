@@ -20,29 +20,32 @@ public class cycleDetect {
         for (int i = 0; i < graph.length; i++) {
             graph[i] = new ArrayList<>();
         }
+
+//        graph[0].add(new Edge(0, 1));
         graph[0].add(new Edge(0, 2));
         graph[0].add(new Edge(0, 3));
-        graph[0].add(new Edge(0,1));
 
-        graph[1].add(new Edge(1,0));
-        graph[1].add(new Edge(1,2));
+//        graph[1].add(new Edge(1, 0));
+        graph[1].add(new Edge(1, 2));
 
         graph[2].add(new Edge(2, 0));
         graph[2].add(new Edge(2, 1));
 
         graph[3].add(new Edge(3, 0));
+        graph[3].add(new Edge(3, 4));
 
-         graph[3].add(new Edge(3, 4));
+        graph[4].add(new Edge(4, 3));
 
-         graph[4].add(new Edge(4, 3));
+
     }
 
-    public static boolean detectCycle(ArrayList<Edge> graph[]) {
+    public static boolean detectCycle(ArrayList<Edge>[] graph) {
 
         boolean[] visit = new boolean[graph.length];
-        for (int i = 0; i < graph.length; i++) {
 
+        for (int i = 0; i < graph.length; i++) {
             if (!visit[i]) {
+
                 if (detectCycleUtil(graph, visit, i, -1)) {
                     return true;
                 }
@@ -51,26 +54,28 @@ public class cycleDetect {
         return false;
     }
 
-    public static boolean detectCycleUtil(ArrayList<Edge>[] graph, boolean[] visit, int curr, int parent) {
+    public static boolean detectCycleUtil(ArrayList<Edge>[] graph, boolean[] visit, int curr, int par) {
 
-        //using dfs
         visit[curr] = true;
+
         for (int i = 0; i < graph[curr].size(); i++) {
 
             Edge e = graph[curr].get(i);
-            if (!visit[e.dest]) {
 
-                if(detectCycleUtil(graph, visit, e.dest, curr)){
+            //1st case
+            if (!visit[e.dest]) {
+                if (detectCycleUtil(graph, visit, e.dest, curr)) {
                     return true;
                 }
-
-            } else if (visit[e.dest] && e.dest != parent) {
+            }
+            //2nd case
+            else if (visit[e.dest] && e.dest != par) {
                 return true;
             }
+            //3rd case the e.dest will be the parent of curr node & neighbour too and it is already being visited.
         }
         return false;
     }
-
 
     public static void main(String[] args) {
 
@@ -78,8 +83,7 @@ public class cycleDetect {
 
         @SuppressWarnings("unchecked")
         ArrayList<Edge>[] graph = new ArrayList[V];
-
         createGraph(graph);
-        System.out.println(detectCycle(graph)); // should print false
+        System.out.println(detectCycle(graph));
     }
 }

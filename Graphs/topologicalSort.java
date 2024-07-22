@@ -35,36 +35,37 @@ public class topologicalSort {
 
     }
 
+
     public static void TopologicalSort(ArrayList<Edge>[] graph) {
 
-        boolean visit[] = new boolean[graph.length];
         Stack<Integer> stk = new Stack<>();
+        boolean[] visit = new boolean[graph.length];
 
         for (int i = 0; i < graph.length; i++) {
             if (!visit[i]) {
-                TopologicalSortUtil(graph, i, visit, stk);
+                TopologicalSortUtil(graph, visit, stk, i);
             }
         }
         while (!stk.isEmpty()) {
-            System.out.print(stk.pop() + " ");
+            System.out.print(stk.pop()+" ");
         }
-
     }
 
-    public static void TopologicalSortUtil(ArrayList<Edge>[] graph, int curr, boolean[] visit, Stack<Integer> stk) {
+    public static void TopologicalSortUtil(ArrayList<Edge>[] graph, boolean[] visit, Stack<Integer> stk, int curr) {
+
 
         visit[curr] = true;
 
         for (int i = 0; i < graph[curr].size(); i++) {
 
             Edge e = graph[curr].get(i);
-            if (!(visit[e.dest])) {
-                TopologicalSortUtil(graph, e.dest, visit, stk);
+            if (!visit[e.dest]) {
+                TopologicalSortUtil(graph, visit, stk, e.dest);
             }
         }
-        stk.add(curr);
-
+        stk.push(curr);
     }
+
 
     public static void main(String[] args) {
 
