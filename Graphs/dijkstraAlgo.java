@@ -1,6 +1,8 @@
 package Advance_dsa_java.Graphs;
 
-import java.util.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class dijkstraAlgo {
 
@@ -8,89 +10,102 @@ public class dijkstraAlgo {
 
         int src;
         int dest;
+        int weight;
 
-        public Edge(int src, int dest) {
+        public Edge(int src, int dest, int weight) {
 
             this.src = src;
             this.dest = dest;
+            this.weight = weight;
         }
     }
 
     public static void createGraph(ArrayList<Edge>[] graph) {
 
         for (int i = 0; i < graph.length; i++) {
-
             graph[i] = new ArrayList<>();
         }
 
-        graph[0].add(new Edge(0, 3));
+        graph[0].add(new Edge(0, 1, 2));
+        graph[0].add(new Edge(0, 2, 4));
 
-        graph[2].add(new Edge(2, 3));
+        graph[1].add(new Edge(1, 3, 7));
+        graph[1].add(new Edge(1, 2, 1));
 
-        graph[3].add(new Edge(3, 1));
+        graph[2].add(new Edge(2, 4, 3));
 
-        graph[4].add(new Edge(4, 0));
-        graph[4].add(new Edge(4, 1));
+        graph[3].add(new Edge(3, 5, 1));
 
-        graph[5].add(new Edge(5, 0));
-        graph[5].add(new Edge(5, 2));
+        graph[4].add(new Edge(4, 3, 2));
+        graph[4].add(new Edge(4, 5, 5));
+
     }
 
     static class Pair implements Comparable<Pair> {
 
-        int node;
+        int n;
         int path;
 
-        public Pair(int node, int path) {
-
-            this.node = node;
+        public Pair(int n, int path) {
+            this.n = n;
             this.path = path;
         }
 
         @Override
+
         public int compareTo(Pair p2) {
 
-            return this.path - p2.path;
+            return this.path - p2.path; //path based sorting for my pairs
         }
     }
 
-    public static void DijkstraAlgo(ArrayList<Edge>[] graph, int src) {
+    public static void dijkstra(ArrayList<Edge>[] graph, int src) {
 
+        int distance[] = new int[graph.length]; //distance[i] -> src to i
 
-        int[] dist = new int[graph.length];
         for (int i = 0; i < graph.length; i++) {
             if (i != src) {
-                dist[i] = Integer.MAX_VALUE;
+                distance[i] = Integer.MAX_VALUE;
             }
         }
-
-        boolean []visit = new boolean[graph.length];
-
         PriorityQueue<Pair> pq = new PriorityQueue<>();
+        boolean[] visit = new boolean[graph.length];
         pq.add(new Pair(src, 0));
 
-        while (!pq.isEmpty()){
+        while (!pq.isEmpty()) {
 
             Pair curr = pq.remove();
-            if (!visit[curr.node]){
-                visit[curr.node] = true;
-                for (int i=0;i<graph[curr.node].size();i++){
+            if (!visit[curr.n]) {
 
-                    Edge e = graph[curr.node].get(i);
+                visit[curr.n] = true;
+
+                for (int i = 0; i < graph[curr.n].size(); i++) {
+                    Edge e = graph[curr.n].get(i);
                     int u = e.src;
                     int v = e.dest;
+                    int wt = e.weight;
+
+                    if (distance[u] + wt < distance[v]) {  // update distance of src to v;
+                        distance[v] = distance[u] + wt;
+                        pq.add(new Pair(v, distance[v]));
+                    }
                 }
             }
         }
-
+        //print all sources to vertices shortest distance
+        for (int i = 0; i < distance.length; i++) {
+            System.out.print(distance[i] + " ");
+        }
     }
 
     public static void main(String[] args) {
 
         int V = 6;
         @SuppressWarnings("unchecked")
-        ArrayList<Edge>[] graph = new ArrayList[V];
+        ArrayList<Edge> graph[] = new ArrayList[V];
         createGraph(graph);
+        int src = 0;
+        dijkstra(graph,src);
 
     }
 }
