@@ -1,6 +1,5 @@
 package Advance_dsa_java.Graphs;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
@@ -13,16 +12,17 @@ public class dijkstraAlgo {
         int weight;
 
         public Edge(int src, int dest, int weight) {
-
             this.src = src;
             this.dest = dest;
             this.weight = weight;
+
         }
     }
 
-    public static void createGraph(ArrayList<Edge>[] graph) {
+    public static void crateGraph(ArrayList<Edge>[] graph) {
 
         for (int i = 0; i < graph.length; i++) {
+
             graph[i] = new ArrayList<>();
         }
 
@@ -41,12 +41,14 @@ public class dijkstraAlgo {
 
     }
 
+
     static class Pair implements Comparable<Pair> {
 
         int n;
         int path;
 
         public Pair(int n, int path) {
+
             this.n = n;
             this.path = path;
         }
@@ -55,46 +57,46 @@ public class dijkstraAlgo {
 
         public int compareTo(Pair p2) {
 
-            return this.path - p2.path; //path based sorting for my pairs
+            return this.path = p2.path;
         }
     }
 
     public static void dijkstra(ArrayList<Edge>[] graph, int src) {
 
-        int distance[] = new int[graph.length]; //distance[i] -> src to i
+        int distance[] = new int[graph.length];
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
 
         for (int i = 0; i < graph.length; i++) {
+
             if (i != src) {
                 distance[i] = Integer.MAX_VALUE;
             }
         }
-        PriorityQueue<Pair> pq = new PriorityQueue<>();
-        boolean[] visit = new boolean[graph.length];
         pq.add(new Pair(src, 0));
 
         while (!pq.isEmpty()) {
 
             Pair curr = pq.remove();
-            if (!visit[curr.n]) {
+           
 
-                visit[curr.n] = true;
+            for (int i = 0; i < graph[curr.n].size(); i++) {
 
-                for (int i = 0; i < graph[curr.n].size(); i++) {
-                    Edge e = graph[curr.n].get(i);
-                    int u = e.src;
-                    int v = e.dest;
-                    int wt = e.weight;
+                Edge e = graph[curr.n].get(i);
 
-                    if (distance[u] + wt < distance[v]) {  // update distance of src to v;
-                        distance[v] = distance[u] + wt;
-                        pq.add(new Pair(v, distance[v]));
-                    }
+                int u = e.src;
+                int v = e.dest;
+                int weight = e.weight;
+
+                if (distance[u] + weight < distance[v]) {
+
+                    //update
+                    distance[v] = distance[u] + weight;
+                    pq.add(new Pair(v, distance[v]));
                 }
             }
         }
-        //print all sources to vertices shortest distance
         for (int i = 0; i < distance.length; i++) {
-            System.out.print(distance[i] + " ");
+            System.out.println(distance[i]);
         }
     }
 
@@ -102,10 +104,10 @@ public class dijkstraAlgo {
 
         int V = 6;
         @SuppressWarnings("unchecked")
-        ArrayList<Edge> graph[] = new ArrayList[V];
-        createGraph(graph);
+        ArrayList<Edge>[] graph = new ArrayList[V];
+        crateGraph(graph);
         int src = 0;
-        dijkstra(graph,src);
+        dijkstra(graph, src);
 
     }
 }
