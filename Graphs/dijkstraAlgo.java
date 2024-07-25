@@ -57,7 +57,7 @@ public class dijkstraAlgo {
 
         public int compareTo(Pair p2) {
 
-            return this.path = p2.path;
+            return this.path - p2.path;
         }
     }
 
@@ -88,7 +88,6 @@ public class dijkstraAlgo {
                 int weight = e.weight;
 
                 if (distance[u] + weight < distance[v]) {
-
                     //update
                     distance[v] = distance[u] + weight;
                     pq.add(new Pair(v, distance[v]));
