@@ -63,40 +63,42 @@ public class dijkstraAlgo {
 
     public static void dijkstra(ArrayList<Edge>[] graph, int src) {
 
-        int distance[] = new int[graph.length];
         PriorityQueue<Pair> pq = new PriorityQueue<>();
+        int dist[] = new int[graph.length];
+        boolean[] visit = new boolean[graph.length];
 
-        for (int i = 0; i < graph.length; i++) {
-
-            if (i != src) {
-                distance[i] = Integer.MAX_VALUE;
+        for (int i=0;i<dist.length;i++){
+            if(i != src){
+                dist[i] = Integer.MAX_VALUE;
             }
         }
+
         pq.add(new Pair(src, 0));
 
         while (!pq.isEmpty()) {
 
             Pair curr = pq.remove();
-           
 
-            for (int i = 0; i < graph[curr.n].size(); i++) {
+            if (!visit[curr.n]) {
+                visit[curr.n] = true;
 
-                Edge e = graph[curr.n].get(i);
+                for (int i = 0; i < graph[curr.n].size(); i++) {
+                    Edge e = graph[curr.n].get(i);
+                    int u = e.src;
+                    int v = e.dest;
+                    int wt = e.weight;
 
-                int u = e.src;
-                int v = e.dest;
-                int weight = e.weight;
-
-                if (distance[u] + weight < distance[v]) {
-                    //update
-                    distance[v] = distance[u] + weight;
-                    pq.add(new Pair(v, distance[v]));
+                    if (dist[u] + wt < dist[v]) {
+                        dist[v] = dist[u] + wt;
+                        pq.add(new Pair(v, dist[v]));
+                    }
                 }
             }
         }
-        for (int i = 0; i < distance.length; i++) {
-            System.out.println(distance[i]);
+        for (int i=0;i<dist.length;i++){
+            System.out.println(dist[i]);
         }
+
     }
 
     public static void main(String[] args) {

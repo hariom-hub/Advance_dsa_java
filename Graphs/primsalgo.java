@@ -44,8 +44,8 @@ public class primsalgo {
 
     static class Pair implements Comparable<Pair> {
 
-        int v;
-        int cost;
+        int v;  //vertices
+        int cost; //cost for the mst
 
         public Pair(int v, int cost) {
 
@@ -59,31 +59,35 @@ public class primsalgo {
 
             return this.cost - p2.cost;
         }
-
     }
+
 
     public static void PrimsAlgorithm(ArrayList<Edge>[] graph) {
 
-        PriorityQueue<Pair> pq = new PriorityQueue<Pair>();
-        boolean[] visit = new boolean[graph.length];
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
         int finalCost = 0;
+
+        boolean[] visit = new boolean[graph.length];
+
         pq.add(new Pair(0, 0));
 
         while (!pq.isEmpty()) {
 
             Pair curr = pq.remove();
+
+            finalCost += curr.cost;
+
             if (!visit[curr.v]) {
+
                 visit[curr.v] = true;
-                finalCost += curr.cost;
                 for (int i = 0; i < graph[curr.v].size(); i++) {
 
                     Edge e = graph[curr.v].get(i);
-                    pq.add(new Pair(e.dest,e.weight));
+                    pq.add(new Pair(e.src, e.weight));
                 }
             }
         }
-        System.out.println("weight of mst is : "+finalCost);
-
+        System.out.println(finalCost);
     }
 
     public static void main(String[] args) {
