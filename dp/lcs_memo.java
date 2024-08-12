@@ -27,8 +27,10 @@ public class lcs_memo {
 
         String str1 = "abcde";
         String str2 = "abce";
+
         int n = str1.length();
         int m = str2.length();
+
         int[][] dp = new int[n + 1][m + 1];
 
         for (int i = 0; i < n + 1; i++) {
