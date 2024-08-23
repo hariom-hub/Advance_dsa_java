@@ -51,10 +51,8 @@ public class knapsack_0_1 {
             for (int j = 1; j < dp[0].length; j++) {
                 int w = wt[i - 1];
                 int v = val[i - 1];
-
                 if (w <= j) {
                     //valid and include
-
                     int incProfit = v + dp[i - 1][j - w];
                     int exProfit = dp[i - 1][j];
                     dp[i][j] = Math.max(incProfit, exProfit);
