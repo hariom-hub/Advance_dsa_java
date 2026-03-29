@@ -4,6 +4,16 @@ import java.util.*;
 public class oop{
 
 
+    abstract class Galaxy {
+
+        abstract void Planet();
+        
+    }
+    public class Sun extends Galaxy{
+        public  void Planet(){
+            System.out.println("this is a Sun.");
+        }
+    }
     public static class Data{
 
         String name;
@@ -31,6 +41,8 @@ public class oop{
         System.out.println("hello hariom");
         Data d1= new Data("harru",20);
         Data d2 = new Data(d1);
+        
+        
        
         
     }
